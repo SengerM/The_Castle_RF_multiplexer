@@ -29,19 +29,18 @@ class ArduinoSerialCommander:
 		time.sleep(.1)
 		response = self.ser.read_until(END_OF_ANSWER_SEQUENCE)
 		return response.decode('ascii')[:-len(END_OF_ANSWER_SEQUENCE)]
-	
-def _connect_channel_method_for_The_Castle(self, channel:int):
-	if not isinstance(channel, int) or not 0<channel<=8:
-		raise ValueError(f'`channel` must be an integer in {{1,2,...,8}}.')
-	result = self.query(f'CONNECT_CHANNEL {channel}')
-	if result != '':
-		raise RuntimeError(f'Error inside The Castle while trying to connect channel {channel}, the response from The Castle was: `{result}`')
 
-The_Castle = ArduinoSerialCommander(find_The_Castle_port().device)
-The_Castle.connect_channel = _connect_channel_method_for_The_Castle.__get__(The_Castle) # https://stackoverflow.com/a/28060251/8849755
+class TheCastle(ArduinoSerialCommander):
+	def connect_channel(self, channel:int):
+		if not isinstance(channel, int) or not 0<channel<=8:
+			raise ValueError(f'`channel` must be an integer in {{1,2,...,8}}.')
+		result = self.query(f'CONNECT_CHANNEL {channel}')
+		if result != '':
+			raise RuntimeError(f'Error inside The Castle while trying to connect channel {channel}, the response from The Castle was: `{result}`')
 
 if __name__ == '__main__':
-	print(END_OF_ANSWER_SEQUENCE)
+	The_Castle = TheCastle(find_The_Castle_port().device)
+	
 	for cmd in {'IDN?','VERSION?','inexistent_command'}:
 		print(cmd)
 		print(The_Castle.query(cmd))

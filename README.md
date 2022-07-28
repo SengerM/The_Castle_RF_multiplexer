@@ -17,7 +17,9 @@ pip install -e PATH_TO_THE_DIRECTORY_WHERE_THIS_README_FILE_IS/code/python
 ## Usage
 
 ```python
-from The_Castle_RF_multiplexer import The_Castle
+from The_Castle_RF_multiplexer import TheCastle, find_The_Castle_port
+
+The_Castle = TheCastle(find_The_Castle_port().device)
 
 for cmd in {'IDN?','VERSION?','inexistent_command'}:
 	print(cmd)
