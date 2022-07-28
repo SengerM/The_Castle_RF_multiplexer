@@ -31,3 +31,9 @@ for k in [1,2,3,4,5,6,7,8]:
 # Arduino firmware
 
 *The Castle* has an Arduino Uno board inside that implements a text based command interface through the serial port. The firmware is available [here](code/arduino).
+
+# The magical component
+
+The magic for the RF multiplexing is done by an [EV1HMC321ALP4E](https://www.analog.com/media/en/technical-documentation/data-sheets/hmc321a.pdf). This is hidden inside the tower of *The Castle*.
+
+![](https://media.digikey.com/Photos/Analog%20Devices%20Photos/EV1HMC321ALP4E.JPG)
