@@ -9,6 +9,8 @@
 #define CTLB_PIN_NUMBER A1
 #define CTLC_PIN_NUMBER A2
 
+#define END_OF_ANSWER_SEQUENCE "<EndOfAnswer>"
+
 ErrorLogger error_logger(13);
 
 // Stuff related to the serial commands --------------------------------
@@ -119,6 +121,7 @@ void loop() {
 	while (not Serial.available()) {
 		if (command_has_just_finished == true) {
 			serial_flush(); // Discard any garbage that was sent while the command was being executed.
+			Serial.print(END_OF_ANSWER_SEQUENCE);
 			command_has_just_finished = false; // Reset this variable.
 		}
 	} // Wait...
