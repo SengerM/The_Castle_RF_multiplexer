@@ -2,10 +2,12 @@
 
 A simple and easy interface to control *The Castle*, an RF multiplexer I made for the lab to automate the measurement of LGAD devices.
 
+![A picture of The Castle](img/photo_2022-07-28_13-09-47.jpg)
+
 # Installation
 
 ```
-pip install -e PATH_TO_THE_DIRECTORY_WHERE_THIS_README_FILE_IS
+pip install -e PATH_TO_THE_DIRECTORY_WHERE_THIS_README_FILE_IS/code/python
 ```
 
 # Usage
