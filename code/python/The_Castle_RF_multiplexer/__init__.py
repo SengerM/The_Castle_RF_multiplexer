@@ -31,6 +31,10 @@ class ArduinoSerialCommander:
 		return response.decode('ascii')[:-len(END_OF_ANSWER_SEQUENCE)]
 
 class TheCastle(ArduinoSerialCommander):
+	@property
+	def idn(self):
+		return self.query('IDN?')[:-2] # Remove the "\r\n" at the end.
+	
 	def connect_channel(self, channel:int):
 		if not isinstance(channel, int) or not 0<channel<=8:
 			raise ValueError(f'`channel` must be an integer in {{1,2,...,8}}.')
